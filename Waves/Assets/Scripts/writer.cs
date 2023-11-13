@@ -10,17 +10,30 @@ public class writer : MonoBehaviour
 
     private List<string> listOfTarget = new List<string>();
 
-    public List<GameObject> enemies;
+    public List<Enemy> enemies = new List<Enemy>();
 
     public TextAsset csvFile;
 
-    private void Start()
+    private void Awake()
     {
         randomWordSelector();
     }
 
     void Update()
     {
+        Enemy[] activeEnemies = FindObjectsOfType<Enemy>();
+
+        foreach (Enemy enemy in enemies)
+        {
+            // Check if the enemy is not already in the list
+            if (!enemies.Contains(enemy))
+            {
+                // Add the new enemy to the list
+                enemies.Add(enemy);
+
+                // Do any other processing or handling for the new enemy here
+            }
+        }
         // Check for all the alphanumeric keys
         for (int i = (int)KeyCode.A; i <= (int)KeyCode.Z; i++)
         {
@@ -39,15 +52,10 @@ public class writer : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-           // if (targetWord == inputText)
-           // {
-         //       Debug.Log("NICE!!!!");
-         //       inputText = GetRandomWordAndRemove();
-          //  }
-          //  else
-          //  {
-          //      Debug.Log("Not very nice :(");
-          //  }
+            foreach (var enemy in enemies)
+            {
+                enemy.hitCheck(inputText);
+            }
         }
 
         // Check for backspace
@@ -78,7 +86,7 @@ public class writer : MonoBehaviour
         }
         for (int i = 0; i < listOfTarget.Count; i++)
         {
-            Debug.Log("Word " + i + ": " + listOfTarget[i]);
+            //Debug.Log("Word " + i + ": " + listOfTarget[i]);
         }
     }
     
