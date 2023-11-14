@@ -66,8 +66,14 @@ public class writer : MonoBehaviour
         {
             foreach (var enemy in enemies)
             {
-                enemy.hitCheck(inputText);
+                bool kill = false;
+                kill = enemy.hitCheck(inputText);
+                if (kill)
+                {
+                    inputText = "";
+                }
             }
+
         }
 
         // Check for backspace

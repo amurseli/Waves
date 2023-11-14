@@ -38,13 +38,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void hitCheck(string word)
+    public bool hitCheck(string word)
     {
         if (word == targetWord)
         {
             //Procesar el daño
             Destroy(transform.parent.gameObject);
+            return true;
         }
+
+        return false;
     }
     
 }
