@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     public TextMeshPro textMeshProComponent;
     public GameObject writer;
-    private string value;
+    private string targetWord;
 
     void Start()
     {
@@ -16,18 +16,16 @@ public class Enemy : MonoBehaviour
 
         if (writer != null)
         {
-            // Get the "AnotherScript" component from the other object
             writer anotherScript = writer.GetComponent<writer>();
            
             if (anotherScript != null)
             {
-                while (value == null)
+                while (targetWord == null)
                 {
-                    value = anotherScript.GetRandomWordAndRemove();
+                    targetWord = anotherScript.GetRandomWordAndRemove();
                 
                 }
-                // Now you can use the "value" variable in your script
-                textMeshProComponent.text = value;
+                textMeshProComponent.text = targetWord;
             }
             else
             {
@@ -42,7 +40,11 @@ public class Enemy : MonoBehaviour
 
     public void hitCheck(string word)
     {
-        Debug.Log("LLEGUE");
+        if (word == targetWord)
+        {
+            //Procesar el daño
+            Destroy(transform.parent.gameObject);
+        }
     }
     
 }

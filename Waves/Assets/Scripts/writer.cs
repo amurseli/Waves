@@ -2,13 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using Random = UnityEngine.Random;
 
 public class writer : MonoBehaviour
 {
-    private string inputText;
+    private string inputText = "";
 
     private List<string> listOfTarget = new List<string>();
+
+    public TextMeshProUGUI canvasField;
 
     public List<Enemy> enemies = new List<Enemy>();
 
@@ -23,7 +26,7 @@ public class writer : MonoBehaviour
     {
         Enemy[] activeEnemies = FindObjectsOfType<Enemy>();
 
-        foreach (Enemy enemy in enemies)
+        foreach (Enemy enemy in activeEnemies)
         {
             // Check if the enemy is not already in the list
             if (!enemies.Contains(enemy))
@@ -34,12 +37,21 @@ public class writer : MonoBehaviour
                 // Do any other processing or handling for the new enemy here
             }
         }
+
+        if (CountCharacters(inputText) < 30)
+        {
+            
+        }
         // Check for all the alphanumeric keys
         for (int i = (int)KeyCode.A; i <= (int)KeyCode.Z; i++)
         {
             if (Input.GetKeyDown((KeyCode)i))
             {
-                char keyChar = (char)('a' + (i - (int)KeyCode.A));
+                char keyChar = (char)('a' + (i - (int)KeyCode.A)); 
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                {
+                    keyChar = char.ToUpper(keyChar);
+                }
                 inputText += keyChar;
             }
         }
@@ -64,6 +76,7 @@ public class writer : MonoBehaviour
             inputText = inputText.Substring(0, inputText.Length - 1);
         }
         
+        canvasField.text = inputText;
     }
 
     public void randomWordSelector()
@@ -106,6 +119,11 @@ public class writer : MonoBehaviour
             Debug.LogWarning("No more words in the list.");
             return null; // Return null or a message to indicate that the list is empty.
         }
+    }
+    
+    int CountCharacters(string inputString)
+    {
+        return inputString.Length;
     }
     
 }
