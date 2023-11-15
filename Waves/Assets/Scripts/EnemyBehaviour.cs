@@ -9,23 +9,15 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Update()
     {
-        // Move the enemy down
         transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
-
-        // Check if the enemy has reached the stop point
-        if (transform.position.y <= stopY)
-        {
-            // Stop the enemy's movement
-            moveSpeed = 0f;
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Check if the enemy has collided with another object (e.g., a barrier)
-        if (collision.gameObject.CompareTag("Barrier"))
+        Debug.Log("Entro al collision");
+        if (collision.gameObject.CompareTag("Base"))
         {
-            // Stop the enemy's movement when colliding with the barrier
+            Debug.Log("Entro a Base");
             moveSpeed = 0f;
         }
     }

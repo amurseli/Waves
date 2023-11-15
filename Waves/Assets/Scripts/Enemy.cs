@@ -10,34 +10,6 @@ public class Enemy : MonoBehaviour
     public GameObject writer;
     private string targetWord;
 
-    void Start()
-    {
-        GameObject writer = GameObject.Find("Writer");
-
-        if (writer != null)
-        {
-            writer anotherScript = writer.GetComponent<writer>();
-           
-            if (anotherScript != null)
-            {
-                while (targetWord == null)
-                {
-                    targetWord = anotherScript.GetRandomWordAndRemove();
-                
-                }
-                textMeshProComponent.text = targetWord;
-            }
-            else
-            {
-                Debug.LogWarning("AnotherScript component not found on the other object.");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("Object with AnotherScript not found in the scene.");
-        }
-    }
-
     public bool hitCheck(string word)
     {
         if (word == targetWord)
@@ -48,6 +20,22 @@ public class Enemy : MonoBehaviour
         }
 
         return false;
+    }
+    
+    public void AssignWord(string word)
+    {
+        targetWord = word;
+        textMeshProComponent.text = targetWord;
+    }
+    
+    void OnDestroy()
+    {
+        // Cuando el objeto Enemy se destruye, elimínalo de la lista en el script writer
+        writer script = GameObject.Find("Writer").GetComponent<writer>();
+        if (script != null)
+        {
+            script.RemoveEnemyFromList(this);
+        }
     }
     
 }

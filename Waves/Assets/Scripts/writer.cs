@@ -8,14 +8,14 @@ using Random = UnityEngine.Random;
 public class writer : MonoBehaviour
 {
     private string inputText = "";
-
+    
     private List<string> listOfTarget = new List<string>();
+    public List<Enemy> enemies = new List<Enemy>();
 
     public TextMeshProUGUI canvasField;
 
-    public List<Enemy> enemies = new List<Enemy>();
-
     public TextAsset csvFile;
+    private int currentIndex = 0; // Track the current index in the randomized list
 
     private void Awake()
     {
@@ -28,39 +28,44 @@ public class writer : MonoBehaviour
 
         foreach (Enemy enemy in activeEnemies)
         {
-            // Check if the enemy is not already in the list
             if (!enemies.Contains(enemy))
             {
                 // Add the new enemy to the list
                 enemies.Add(enemy);
 
+                // Assign a random word to the new enemy
+                AssignRandomWordToEnemy(enemy);
+
                 // Do any other processing or handling for the new enemy here
             }
         }
 
-        if (CountCharacters(inputText) < 30)
+        if (inputText.Length <= 30)
         {
-            
-        }
-        // Check for all the alphanumeric keys
-        for (int i = (int)KeyCode.A; i <= (int)KeyCode.Z; i++)
-        {
-            if (Input.GetKeyDown((KeyCode)i))
+            // Check for all the alphanumeric keys
+            for (int i = (int)KeyCode.A; i <= (int)KeyCode.Z; i++)
             {
-                char keyChar = (char)('a' + (i - (int)KeyCode.A)); 
-                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                if (Input.GetKeyDown((KeyCode)i))
                 {
-                    keyChar = char.ToUpper(keyChar);
+                    char keyChar = (char)('a' + (i - (int)KeyCode.A)); 
+                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                    {
+                        keyChar = char.ToUpper(keyChar);
+                    }
+                    inputText += keyChar;
                 }
-                inputText += keyChar;
+            }
+
+            if (Input.inputString.Contains("ñ"))
+            {
+                inputText += "ñ";
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                inputText += " ";
             }
         }
 
-        // Check for spacebar
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            inputText += " ";
-        }
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -68,11 +73,9 @@ public class writer : MonoBehaviour
             {
                 bool kill = false;
                 kill = enemy.hitCheck(inputText);
-                if (kill)
-                {
-                    inputText = "";
-                }
+
             }
+            inputText = "";
 
         }
 
@@ -103,33 +106,52 @@ public class writer : MonoBehaviour
                 }
             }
         }
-        for (int i = 0; i < listOfTarget.Count; i++)
+        int n = listOfTarget.Count;
+        while (n > 1)
         {
-            //Debug.Log("Word " + i + ": " + listOfTarget[i]);
+            n--;
+            int k = Random.Range(0, n + 1);
+            (listOfTarget[k], listOfTarget[n]) = (listOfTarget[n], listOfTarget[k]);
         }
     }
     
-    public string GetRandomWordAndRemove()
+
+    public string GetNextWordAndRemove()
     {
-        if (listOfTarget.Count > 0)
+        if (currentIndex < listOfTarget.Count)
         {
-            int randomIndex = Random.Range(0, listOfTarget.Count); // Generate a random index.
-            string randomWord = listOfTarget[randomIndex]; // Get the random word.
-
-            listOfTarget.RemoveAt(randomIndex); // Remove the word from the list.
-
-            return randomWord;
+            string nextWord = listOfTarget[currentIndex];
+            currentIndex++; // Move to the next index
+            Debug.Log("Index: "+currentIndex+" ListCount: "+ listOfTarget.Count);
+            return nextWord;
         }
-        else
+        
+        Debug.LogWarning("No more words in the list.");
+        return "NoWorldLeft"; // Return null or a message to indicate that the list is empty.
+
+    }
+    
+    public void AssignRandomWordToEnemy(Enemy enemy)
+    {
+        string randomWord = GetNextWordAndRemove();
+
+        if (randomWord != null)
         {
-            Debug.LogWarning("No more words in the list.");
-            return null; // Return null or a message to indicate that the list is empty.
+            enemy.AssignWord(randomWord);
         }
     }
     
     int CountCharacters(string inputString)
     {
         return inputString.Length;
+    }
+    
+    public void RemoveEnemyFromList(Enemy enemy)
+    {
+        if (enemies.Contains(enemy))
+        {
+            enemies.Remove(enemy);
+        }
     }
     
 }
