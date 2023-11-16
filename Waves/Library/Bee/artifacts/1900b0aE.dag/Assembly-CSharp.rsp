@@ -387,6 +387,7 @@
 "Assets/Scripts/Enemy.cs"
 "Assets/Scripts/EnemyBehaviour.cs"
 "Assets/Scripts/EnemySpawner.cs"
+"Assets/Scripts/Wave.cs"
 "Assets/Scripts/writer.cs"
 -langversion:9.0
 

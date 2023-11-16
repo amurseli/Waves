@@ -118,11 +118,21 @@ public class writer : MonoBehaviour
 
     public string GetNextWordAndRemove()
     {
-        if (currentIndex < listOfTarget.Count)
+        bool reuseWord = false;
+        if (currentIndex > 3)
+        {   //Logica de reusar palabras para generar enemigos con palabras iguales
+            reuseWord = Random.Range(0, 100) < 5;
+        }
+        
+        if (currentIndex < listOfTarget.Count && !reuseWord)
         {
             string nextWord = listOfTarget[currentIndex];
             currentIndex++; // Move to the next index
-            Debug.Log("Index: "+currentIndex+" ListCount: "+ listOfTarget.Count);
+            return nextWord;
+        }else if (reuseWord)
+        {
+            string nextWord = listOfTarget[currentIndex - Random.Range(1,3)];
+            Debug.Log("repeted Word " + nextWord);
             return nextWord;
         }
         

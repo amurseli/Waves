@@ -247,7 +247,7 @@ Transform:
   m_GameObject: {fileID: 181141550}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1146, y: -1.681, z: 0}
+  m_LocalPosition: {x: 0.07, y: -2.37, z: 0}
   m_LocalScale: {x: 23.656027, y: 0.56206083, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -922,8 +922,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 5298073509129439467, guid: f0dbbec85cc9dfd4dbc27f432a1ece61, type: 3}
-  spawnInterval: 2
+  initialSpawnInterval: 5
   spawnRange: 9.89
+  waves:
+  - {fileID: 11400000, guid: c1f2120ed7574ff419f88f37572edc3d, type: 2}
+  - {fileID: 11400000, guid: ff6cb1bb0589ed849ad49ffa98594276, type: 2}
+  spawnIntervalIncreaseRate: 0.1
 --- !u!4 &1768889422
 Transform:
   m_ObjectHideFlags: 0
