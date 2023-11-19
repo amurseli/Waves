@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -7,6 +8,9 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyPrefab; // Reference to your Enemy prefab
     public float initialSpawnInterval = 5f; // Time interval between spawns
     public float spawnRange = 5.0f;
+    public int multipleEnemies = 0;
+
+    public TextMeshPro waveText;
 
     public List<Wave> waves;
     private int currentWaveIndex = 0;
@@ -29,8 +33,11 @@ public class EnemySpawner : MonoBehaviour
         while (currentWaveIndex < waves.Count)
         {
             Wave currentWave = waves[currentWaveIndex];
+            waveText.text = (currentWaveIndex + 1).ToString();
+            yield return new WaitForSeconds(5f);
+            waveText.text = "";
             Debug.Log("Wave Numero" + (currentWaveIndex + 1));
-
+            multipleEnemies = 0;
 
             float spawnInterval = currentWave.spawnInterval;
             float growthRate = currentWave.growthRate;
@@ -40,7 +47,7 @@ public class EnemySpawner : MonoBehaviour
                 yield return new WaitForSeconds(newspawnInterval);
                 spawnInterval = newspawnInterval;
                 // Spawn a new enemy
-                SpawnEnemy();
+                SpawnEnemy(i);
                 Debug.Log("Enemies Remaining: " + (currentWave.enemyCount - (i + 1)));
             }
             //Aca iría el codigo para cuando se termina una Wave
@@ -50,13 +57,17 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    void SpawnEnemy()
+    void SpawnEnemy(int enemyNumber)
     {
-
+        multipleEnemies++;
         float offsetX = Random.Range(-spawnRange, spawnRange);
         Vector3 spawnPosition = new Vector3(transform.position.x + offsetX, transform.position.y, transform.position.z);
 
         GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-
+        if (Random.Range(0, 20) < (enemyNumber * 0.18f) && multipleEnemies <= 3 && enemyNumber > 3)
+        { 
+            SpawnEnemy(enemyNumber);
+            multipleEnemies = 0;
+        }
     }
 }

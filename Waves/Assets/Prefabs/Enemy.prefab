@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 5298073509129439467}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2196, y: 2.7986, z: 0}
-  m_LocalScale: {x: 0.7563586, y: 0.7563586, z: 0.7563586}
+  m_LocalPosition: {x: 0.5047, y: 2.843, z: 0}
+  m_LocalScale: {x: 0.6674865, y: 0.6674865, z: 0.6674865}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7045662519058795214}
@@ -102,7 +102,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1.8
-  textMeshProComponent: {fileID: 5185748522270070276}
 --- !u!222 &854129308276836314
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -259,8 +258,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -529178797
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &5185748522270070276

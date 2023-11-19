@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Wave 2
   m_EditorClassIdentifier: 
   enemyCount: 30
-  spawnInterval: 3
+  spawnInterval: 2.5
   growthRate: 0.05

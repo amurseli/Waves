@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCount: 20
   spawnInterval: 4.5
-  growthRate: 0.1
+  growthRate: 0.15

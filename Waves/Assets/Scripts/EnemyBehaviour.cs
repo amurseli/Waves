@@ -1,41 +1,51 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class EnemyBehaviour : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public TextMeshPro textMeshProComponent;
+    private bool hitting = false;
+    private bool canHit = true;
+    private GameObject enemyBase;
+    private float enemyHp;
 
     private void Start()
     {
-        bool textAbove = Random.Range(0, 2) == 0;
-
-        // Adjust the local position of the text
-        if (textAbove)
-        {
-            textMeshProComponent.transform.localPosition = new Vector3(0f, 1f, 0f);
-        }
-        else
-        {
-            textMeshProComponent.transform.localPosition = new Vector3(0f, -1f, 0f);
-        }
+        enemyBase = GameObject.FindWithTag("Base");
     }
 
     private void Update()
     {
         transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+        if (hitting && canHit)
+        {
+            StartCoroutine(WaitAndHit());
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-       // Debug.Log("Entro al collision");
-        
         if (collision.gameObject.CompareTag("Base"))
         {
+            hitting = true;
             moveSpeed = 0f;
         }
-        
+    }
+
+    private IEnumerator WaitAndHit()
+    {
+        canHit = false;
+        yield return new WaitForSeconds(0.5f);
+        if (enemyBase != null)
+        {
+            Base baseScript = enemyBase.GetComponent<Base>();
+
+            if (baseScript != null)
+            {
+                baseScript.hit(10f);
+            }
+        }
+        yield return new WaitForSeconds(3f);
+        canHit = true;
     }
 }
