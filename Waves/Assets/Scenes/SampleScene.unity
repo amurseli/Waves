@@ -951,6 +951,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 5298073509129439467, guid: f0dbbec85cc9dfd4dbc27f432a1ece61, type: 3}
+  specialEnemyList:
+  - {fileID: 5298073509129439467, guid: 2908eabba2d480c45ab9e3ffc553495e, type: 3}
+  - {fileID: 5298073509129439467, guid: 2908eabba2d480c45ab9e3ffc553495e, type: 3}
+  - {fileID: 5298073509129439467, guid: 2908eabba2d480c45ab9e3ffc553495e, type: 3}
+  - {fileID: 5298073509129439467, guid: abc32d2ba12cffa4ab6c72e34bac4164, type: 3}
+  - {fileID: 5298073509129439467, guid: abc32d2ba12cffa4ab6c72e34bac4164, type: 3}
   initialSpawnInterval: 5
   spawnRange: 6
   multipleEnemies: 0

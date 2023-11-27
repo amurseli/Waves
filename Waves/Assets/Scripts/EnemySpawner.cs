@@ -6,10 +6,11 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab; // Reference to your Enemy prefab
+    public List<GameObject> specialEnemyList;
     public float initialSpawnInterval = 5f; // Time interval between spawns
     public float spawnRange = 5.0f;
     public int multipleEnemies = 0;
-
+    
     public TextMeshPro waveText;
 
     public List<Wave> waves;
@@ -69,5 +70,15 @@ public class EnemySpawner : MonoBehaviour
             SpawnEnemy(enemyNumber);
             multipleEnemies = 0;
         }
+
+        if (Random.Range(0, 20) < (enemyNumber * 2.15f))
+        {
+            GameObject specialEnemy = Instantiate(specialEnemyList[Random.Range(0,5)], getSimilarSpawnPosition(spawnPosition), Quaternion.identity);
+        }
+    }
+
+    Vector3 getSimilarSpawnPosition(Vector3 initialSpawn)
+    {
+        return new Vector3(initialSpawn.x + Random.Range(1, 2), initialSpawn.y + Random.Range(1, 2), initialSpawn.z);
     }
 }

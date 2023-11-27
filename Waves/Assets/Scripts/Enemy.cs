@@ -14,8 +14,34 @@ public class Enemy : MonoBehaviour
     {
         if (word == targetWord)
         {
-            //Procesar el daño
-            Destroy(transform.parent.gameObject);
+            // Get all the child objects of the parent
+            Transform parentTransform = transform.parent;
+            int siblingCount = parentTransform.childCount;
+
+            bool otherWordsExist = false;
+
+            // Check if there are other words besides the current one
+            for (int i = 0; i < siblingCount; i++)
+            {
+                if (parentTransform.GetChild(i) != transform)
+                {
+                    otherWordsExist = true;
+                    break;
+                }
+            }
+
+            // Process damage based on conditions
+            if (otherWordsExist)
+            {
+                // There are other words, destroy only the current object
+                Destroy(gameObject);
+            }
+            else
+            {
+                // No other words, destroy the parent object
+                Destroy(parentTransform.gameObject);
+            }
+
             return true;
         }
 
