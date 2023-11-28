@@ -71,7 +71,7 @@ public class EnemySpawner : MonoBehaviour
             multipleEnemies = 0;
         }
 
-        if (Random.Range(0, 20) < (enemyNumber * 2.15f))
+        if (Random.Range(0, 20) < (enemyNumber * 0.15f))
         {
             GameObject specialEnemy = Instantiate(specialEnemyList[Random.Range(0,5)], getSimilarSpawnPosition(spawnPosition), Quaternion.identity);
         }
