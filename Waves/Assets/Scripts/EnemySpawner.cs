@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab; // Reference to your Enemy prefab
-    public List<GameObject> specialEnemyList;
+    //public List<GameObject> specialEnemyList;
     public float initialSpawnInterval = 5f; // Time interval between spawns
     public float spawnRange = 5.0f;
     public int multipleEnemies = 0;
@@ -48,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
                 yield return new WaitForSeconds(newspawnInterval);
                 spawnInterval = newspawnInterval;
                 // Spawn a new enemy
-                SpawnEnemy(i);
+                SpawnEnemy(i,currentWave);
                 Debug.Log("Enemies Remaining: " + (currentWave.enemyCount - (i + 1)));
             }
             //Aca iría el codigo para cuando se termina una Wave
@@ -58,7 +58,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    void SpawnEnemy(int enemyNumber)
+    void SpawnEnemy(int enemyNumber, Wave currentWave)
     {
         multipleEnemies++;
         float offsetX = Random.Range(-spawnRange, spawnRange);
@@ -67,13 +67,13 @@ public class EnemySpawner : MonoBehaviour
         GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         if (Random.Range(0, 20) < (enemyNumber * 0.18f) && multipleEnemies <= 3 && enemyNumber > 3)
         { 
-            SpawnEnemy(enemyNumber);
-            multipleEnemies = 0;
+            SpawnEnemy(enemyNumber, currentWave);
+            multipleEnemies += 1;
         }
 
-        if (Random.Range(0, 20) < (enemyNumber * 0.15f))
+        if (currentWave.shouldSpawnSpecial(enemyNumber))
         {
-            GameObject specialEnemy = Instantiate(specialEnemyList[Random.Range(0,5)], getSimilarSpawnPosition(spawnPosition), Quaternion.identity);
+            GameObject specialEnemy = Instantiate(currentWave.getSpecialEnemy(enemyNumber), getSimilarSpawnPosition(spawnPosition), Quaternion.identity);
         }
     }
 

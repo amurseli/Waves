@@ -14,4 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCount: 30
   spawnInterval: 2.5
-  growthRate: 0.05
+  growthRate: 0.03
+  specialEnemyList:
+    _serializedList:
+    - Key: 9
+      Value: {fileID: 5298073509129439467, guid: 2908eabba2d480c45ab9e3ffc553495e, type: 3}
+    - Key: 19
+      Value: {fileID: 5298073509129439467, guid: 2908eabba2d480c45ab9e3ffc553495e, type: 3}
+    - Key: 24
+      Value: {fileID: 5298073509129439467, guid: 2908eabba2d480c45ab9e3ffc553495e, type: 3}
+    - Key: 29
+      Value: {fileID: 5298073509129439467, guid: abc32d2ba12cffa4ab6c72e34bac4164, type: 3}

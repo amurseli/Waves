@@ -1,5 +1,8 @@
+using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
+[SerializedDictionary("With Enemy", "Spawn")]
 [CreateAssetMenu(fileName = "NewWave", menuName = "Wave")]
 public class Wave : ScriptableObject
 {
@@ -7,4 +10,24 @@ public class Wave : ScriptableObject
     public float spawnInterval;
     public float growthRate;
     
+    public SerializedDictionary<int,GameObject> specialEnemyList;
+
+    public bool shouldSpawnSpecial(int enemyNumber)
+    {
+        foreach (var enemy in specialEnemyList)
+        {
+            if (enemyNumber == enemy.Key)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
+    public GameObject getSpecialEnemy(int enemyNumber)
+    {
+        return specialEnemyList[enemyNumber];
+        
+    }
 }

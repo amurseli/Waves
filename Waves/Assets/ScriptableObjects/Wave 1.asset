@@ -15,3 +15,9 @@ MonoBehaviour:
   enemyCount: 20
   spawnInterval: 4.5
   growthRate: 0.15
+  specialEnemyList:
+    _serializedList:
+    - Key: 2
+      Value: {fileID: 5298073509129439467, guid: 2908eabba2d480c45ab9e3ffc553495e, type: 3}
+    - Key: 20
+      Value: {fileID: 5298073509129439467, guid: 2908eabba2d480c45ab9e3ffc553495e, type: 3}
