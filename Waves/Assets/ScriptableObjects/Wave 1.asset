@@ -17,7 +17,7 @@ MonoBehaviour:
   growthRate: 0.15
   specialEnemyList:
     _serializedList:
-    - Key: 2
-      Value: {fileID: 5298073509129439467, guid: 2908eabba2d480c45ab9e3ffc553495e, type: 3}
-    - Key: 20
+    - Key: 1
+      Value: {fileID: 5298073509129439467, guid: d24253440d24ca147b0a7072f9982eea, type: 3}
+    - Key: 19
       Value: {fileID: 5298073509129439467, guid: 2908eabba2d480c45ab9e3ffc553495e, type: 3}

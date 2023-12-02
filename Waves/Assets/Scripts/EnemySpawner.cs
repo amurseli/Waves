@@ -64,11 +64,13 @@ public class EnemySpawner : MonoBehaviour
         float offsetX = Random.Range(-spawnRange, spawnRange);
         Vector3 spawnPosition = new Vector3(transform.position.x + offsetX, transform.position.y, transform.position.z);
 
-        GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-        if (Random.Range(0, 20) < (enemyNumber * 0.18f) && multipleEnemies <= 3 && enemyNumber > 3)
-        { 
-            SpawnEnemy(enemyNumber, currentWave);
-            multipleEnemies += 1;
+        if(!currentWave.shouldSpawnSpecial(enemyNumber)){
+            GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            if (Random.Range(0, 20) < (enemyNumber * 0.18f) && multipleEnemies <= 3 && enemyNumber > 3)
+            { 
+                SpawnEnemy(enemyNumber, currentWave);
+                multipleEnemies += 1;
+            }
         }
 
         if (currentWave.shouldSpawnSpecial(enemyNumber))

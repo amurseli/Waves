@@ -8,8 +8,8 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     public TextMeshPro textMeshProComponent;
     public GameObject writer;
-    private string targetWord;
-
+    private string targetWord; 
+    
     public bool hitCheck(string word)
     {
         if (word == targetWord)
@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
             // Get all the child objects of the parent
             Transform parentTransform = transform.parent;
             int siblingCount = parentTransform.childCount;
+
 
             bool otherWordsExist = false;
 
@@ -63,5 +64,7 @@ public class Enemy : MonoBehaviour
             script.RemoveEnemyFromList(this);
         }
     }
+    
+   
     
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3760285365364915923}
   - component: {fileID: 980071468232879750}
   - component: {fileID: 8620433774222966824}
+  - component: {fileID: 4984936607932152291}
   - component: {fileID: 854129308276836314}
   - component: {fileID: 5353552761052342127}
   - component: {fileID: 8837913285362264698}
@@ -102,6 +103,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1.8
+  isBoss: 0
+--- !u!114 &4984936607932152291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5298073509129439467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc52172bd9f963548aaf9e1b8821cbe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1.8
+  hitting: 0
 --- !u!222 &854129308276836314
 CanvasRenderer:
   m_ObjectHideFlags: 0

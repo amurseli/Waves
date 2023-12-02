@@ -393,6 +393,9 @@
 "Assets/Scripts/Enemy.cs"
 "Assets/Scripts/EnemyBehaviour.cs"
 "Assets/Scripts/EnemySpawner.cs"
+"Assets/Scripts/SpecialBehaviors/BossBehaviour.cs"
+"Assets/Scripts/SpecialBehaviors/IBehaviour.cs"
+"Assets/Scripts/SpecialBehaviors/normalBehaviour.cs"
 "Assets/Scripts/Wave.cs"
 "Assets/Scripts/writer.cs"
 -langversion:9.0
