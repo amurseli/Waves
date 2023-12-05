@@ -761,7 +761,7 @@ GameObject:
   - component: {fileID: 8837913285362264698}
   m_Layer: 3
   m_Name: Boss1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -851,6 +851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01fd9550ab990784d8a5a467f8f322cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
   isBoss: 0
 --- !u!114 &4351565240437706196
 MonoBehaviour:
@@ -864,7 +865,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501c0b349b3a65a4fb3b413afc1c7c22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 0.8
+  hitting: 0
 --- !u!222 &854129308276836314
 CanvasRenderer:
   m_ObjectHideFlags: 0

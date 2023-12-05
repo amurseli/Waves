@@ -13,6 +13,8 @@ public class EnemySpawner : MonoBehaviour
     
     public TextMeshPro waveText;
 
+    public GameObject dialogueBox;
+
     public List<Wave> waves;
     private int currentWaveIndex = 0;
     
@@ -34,30 +36,58 @@ public class EnemySpawner : MonoBehaviour
         while (currentWaveIndex < waves.Count)
         {
             Wave currentWave = waves[currentWaveIndex];
+            bool waitForCondition = true;
+            dialogueBox.GetComponent<Animator>().SetTrigger("Open");
+            currentWave.StartDialogue();
+            // Modify this loop condition based on your specific condition to wait
+            while (waitForCondition)
+            {
+                // Check the condition
+                waitForCondition = DialogueManager.onConversation;
+                if (!waitForCondition)
+                {
+                    Debug.Log(waitForCondition);
+                }
+                // Wait for a short interval before checking again
+                yield return null;
+            }
+            dialogueBox.GetComponent<Animator>().SetTrigger("Close");
+            
             waveText.text = (currentWaveIndex + 1).ToString();
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(2f);
             waveText.text = "";
             Debug.Log("Wave Numero" + (currentWaveIndex + 1));
             multipleEnemies = 0;
 
             float spawnInterval = currentWave.spawnInterval;
             float growthRate = currentWave.growthRate;
+        
+
             for (int i = 0; i < currentWave.enemyCount; i++)
             {
                 float newspawnInterval = spawnInterval - growthRate; 
                 yield return new WaitForSeconds(newspawnInterval);
                 spawnInterval = newspawnInterval;
                 // Spawn a new enemy
-                SpawnEnemy(i,currentWave);
+                SpawnEnemy(i, currentWave);
                 Debug.Log("Enemies Remaining: " + (currentWave.enemyCount - (i + 1)));
             }
-            //Aca iría el codigo para cuando se termina una Wave
 
+            // Check for the conditions to start the next wave
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            while (enemies.Length > 0)
+            {
+                Debug.Log(enemies.Length);
+                yield return null;
+                enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            }
+        
+            //Aca iría el codigo para cuando se termina una Wave
             // Move to the next wave
             currentWaveIndex++;
         }
     }
-
+    
     void SpawnEnemy(int enemyNumber, Wave currentWave)
     {
         multipleEnemies++;

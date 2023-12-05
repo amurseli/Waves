@@ -197,12 +197,13 @@ GameObject:
   - component: {fileID: 3760285365364915923}
   - component: {fileID: 980071468232879750}
   - component: {fileID: 8620433774222966824}
+  - component: {fileID: -845840205972068518}
   - component: {fileID: 854129308276836314}
   - component: {fileID: 5353552761052342127}
   - component: {fileID: 8837913285362264698}
   m_Layer: 3
   m_Name: DoubleEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -289,6 +290,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1.4
+  isBoss: 0
+--- !u!114 &-845840205972068518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5298073509129439467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc52172bd9f963548aaf9e1b8821cbe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1.4
+  hitting: 0
 --- !u!222 &854129308276836314
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -333,7 +349,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.72, y: 0.72}
+    oldSize: {x: 1.125, y: 1.125}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
