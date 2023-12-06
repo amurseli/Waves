@@ -672,7 +672,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies: []
   canvasField: {fileID: 1511020655}
-  csvFile: {fileID: 4900000, guid: 75411ccb56adfc1478041e987fbef0ea, type: 3}
 --- !u!4 &263485469
 Transform:
   m_ObjectHideFlags: 0
@@ -1839,6 +1838,7 @@ MonoBehaviour:
   spawnRange: 6
   multipleEnemies: 0
   waveText: {fileID: 2045271439}
+  writer: {fileID: 263485468}
   dialogueBox: {fileID: 685345035}
   waves:
   - {fileID: 11400000, guid: c1f2120ed7574ff419f88f37572edc3d, type: 2}

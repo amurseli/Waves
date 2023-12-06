@@ -15,6 +15,7 @@ MonoBehaviour:
   enemyCount: 30
   spawnInterval: 2
   growthRate: 0.03
+  WordsCsv: {fileID: 4900000, guid: 60202da0ed614a5cb384f8d127f7c515, type: 3}
   specialEnemyList:
     _serializedList:
     - Key: 5
@@ -29,3 +30,6 @@ MonoBehaviour:
       Value: {fileID: 5298073509129439467, guid: 2908eabba2d480c45ab9e3ffc553495e, type: 3}
     - Key: 29
       Value: {fileID: 5298073509129439467, guid: 2908eabba2d480c45ab9e3ffc553495e, type: 3}
+  dialogue:
+    speakerName: 
+    lines: []

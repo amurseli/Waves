@@ -25,12 +25,12 @@ public class DialogueManager : MonoBehaviour
         
         text = GameObject.Find("DialogueText");
         speaker = GameObject.Find("SpeakerNameText");
+        lines = new Queue<string>();
 
     }
     
     private void Start()
     {
-        lines = new Queue<string>();
     }
 
     private void Update()
@@ -44,6 +44,10 @@ public class DialogueManager : MonoBehaviour
     public static void StartDialogue(Dialogue dialogue)
     {
         Debug.Log("Start with" + dialogue.speakerName);
+        if (lines == null)
+        {
+            Debug.Log("Fucke me in the arse daddyww");
+        }
         lines.Clear();
         onConversation = true;
         

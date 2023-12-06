@@ -14,13 +14,9 @@ public class writer : MonoBehaviour
 
     public TextMeshProUGUI canvasField;
 
-    public TextAsset csvFile;
     private int currentIndex = 0; // Track the current index in the randomized list
 
-    private void Awake()
-    {
-        randomWordSelector();
-    }
+
 
     void Update()
     {
@@ -88,8 +84,9 @@ public class writer : MonoBehaviour
         canvasField.text = inputText;
     }
 
-    public void randomWordSelector()
+    public void randomWordSelector(TextAsset csvFile)
     {
+        listOfTarget = new List<string>();
         string[] lines = csvFile.text.Split('\n'); // Split the CSV file into an array of lines.
 
         foreach (string line in lines)

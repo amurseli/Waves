@@ -15,6 +15,7 @@ MonoBehaviour:
   enemyCount: 2
   spawnInterval: 4.5
   growthRate: 0.15
+  WordsCsv: {fileID: 4900000, guid: 32d7cd101d244726b0b2f63c4a222659, type: 3}
   specialEnemyList:
     _serializedList:
     - Key: 19

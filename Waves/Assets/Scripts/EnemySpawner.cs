@@ -13,6 +13,8 @@ public class EnemySpawner : MonoBehaviour
     
     public TextMeshPro waveText;
 
+    public writer writer;
+
     public GameObject dialogueBox;
 
     public List<Wave> waves;
@@ -22,6 +24,7 @@ public class EnemySpawner : MonoBehaviour
 
     private float currentSpawnInterval; // Current time interval between spawns
 
+    
     
     void Start()
     {
@@ -37,8 +40,13 @@ public class EnemySpawner : MonoBehaviour
         {
             Wave currentWave = waves[currentWaveIndex];
             bool waitForCondition = true;
-            dialogueBox.GetComponent<Animator>().SetTrigger("Open");
+            if (currentWave.hasScene())
+            {
+                Debug.Log(currentWave.hasScene());
+                dialogueBox.GetComponent<Animator>().SetTrigger("Open");
+            }
             currentWave.StartDialogue();
+            writer.randomWordSelector(currentWave.WordsCsv);
             // Modify this loop condition based on your specific condition to wait
             while (waitForCondition)
             {
@@ -52,6 +60,7 @@ public class EnemySpawner : MonoBehaviour
                 yield return null;
             }
             dialogueBox.GetComponent<Animator>().SetTrigger("Close");
+            writer.canvasField.text = "";
             
             waveText.text = (currentWaveIndex + 1).ToString();
             yield return new WaitForSeconds(2f);
@@ -83,6 +92,7 @@ public class EnemySpawner : MonoBehaviour
             }
         
             //Aca iría el codigo para cuando se termina una Wave
+            
             // Move to the next wave
             currentWaveIndex++;
         }
@@ -96,6 +106,7 @@ public class EnemySpawner : MonoBehaviour
 
         if(!currentWave.shouldSpawnSpecial(enemyNumber)){
             GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            
             if (Random.Range(0, 20) < (enemyNumber * 0.18f) && multipleEnemies <= 3 && enemyNumber > 3)
             { 
                 SpawnEnemy(enemyNumber, currentWave);

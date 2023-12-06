@@ -9,6 +9,8 @@ public class Wave : ScriptableObject
     public int enemyCount;
     public float spawnInterval;
     public float growthRate;
+
+    public TextAsset WordsCsv;
     
     public SerializedDictionary<int,GameObject> specialEnemyList;
 
@@ -37,4 +39,10 @@ public class Wave : ScriptableObject
         return specialEnemyList[enemyNumber];
         
     }
+
+    public bool hasScene()
+    {
+        return dialogue.hasText();
+    }
+
 }
