@@ -390,6 +390,7 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.13f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.13f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/Base.cs"
+"Assets/Scripts/csvManager.cs"
 "Assets/Scripts/Enemy.cs"
 "Assets/Scripts/EnemyBehaviour.cs"
 "Assets/Scripts/EnemySpawner.cs"
@@ -400,6 +401,7 @@
 "Assets/Scripts/SpecialBehaviors/IBehaviour.cs"
 "Assets/Scripts/SpecialBehaviors/normalBehaviour.cs"
 "Assets/Scripts/writer.cs"
+"Assets/Shaders/Shader.cs"
 -langversion:9.0
 
 /deterministic
